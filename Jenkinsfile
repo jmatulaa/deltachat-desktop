@@ -13,7 +13,7 @@ pipeline {
 		stage('Test') {
 			steps {
 				echo 'Testing'
-				sh 'npm 1 test'
+				sh 'npm test'
 			}
 		}
 	}
