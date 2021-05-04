@@ -4,13 +4,13 @@ const test = require('tape')
 const setup = require('./setup')
 const domHelper = require('./domHelper')
 const testCredentials = setup.getConfig().credentials
-
+1234
 test('app runs', async (t) => {
   const app = setup.createApp()
   await setup.waitForLoad(app, t)
   const text = await app.client.getText('.bp3-navbar-heading')
   t.equal(text, 'Welcome to Delta Chat', 'App is loaded and welcome message is shown')
-  setup.endTest(app, t)
+  setu.endTest(app, t)
 })
 
 test('Bad mail address results in error message', async (t) => {
