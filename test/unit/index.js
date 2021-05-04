@@ -1,7 +1,7 @@
 const test = require('tape')
 const fs = require('fs')
 const path = require('path')
-
+1234
 test('that translation files are valid json', t => {
   const dir = path.join(__dirname, '../../_locales')
   fs.readdir(dir, (err, files) => {
