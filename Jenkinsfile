@@ -7,6 +7,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh 'npm install'
+				sh 'npm run build'
 			}
 		}
 		stage('Test') {
@@ -22,8 +23,8 @@ pipeline {
 			}
 			failure {
         			emailext attachLog: true,
-        			body: 'Error is in ${env.BUILD_URL}',  
-        			subject: 'Failed Pipeline: ${currentBuild.fullDisplayName}', 
+        			body: "Error is in ${env.BUILD_URL}",  
+        			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
         			to: 'julaa.mat@gmail.com'
     		}
 		}
