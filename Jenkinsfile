@@ -6,8 +6,24 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
+				sh 'git pull origin master'
 				sh 'npm install'
 				sh 'npm run build'
+				}
+		post {
+			failure{
+				emailext attachLog: true,
+				body: "Error is in ${env.BUILD_URL}",  
+				subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
+				to: 'julaa.mat@gmail.com'
+				}
+			success{
+				emailext attachLog: true,
+				body: "Error is in ${env.BUILD_URL}",  
+				subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
+				to: 'julaa.mat@gmail.com'
+				
+				}	
 			}
 		}
 		stage('Test') {
@@ -17,9 +33,9 @@ pipeline {
 			}
 		}
 	}
-	post {
+		post {
 			success {
-            		echo 'Test success!'
+            			echo 'Test success!'
 			}
 			failure {
         			emailext attachLog: true,
@@ -27,6 +43,6 @@ pipeline {
         			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
         			to: 'julaa.mat@gmail.com'
     		}
-		}
+	}
 	
 }
