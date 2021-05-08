@@ -19,9 +19,8 @@ pipeline {
 				to: 'julaa.mat@gmail.com'
 				}
 			success{
-				emailext attachLog: true,
-				body: "Error is in ${env.BUILD_URL}",  
-				subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
+				emailext attachLog: true, 
+				subject: "Success Pipeline: ${currentBuild.fullDisplayName}", 
 				to: 'julaa.mat@gmail.com'
 				
 				}	
