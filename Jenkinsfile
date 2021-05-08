@@ -20,6 +20,7 @@ pipeline {
 				}
 			success{
 				emailext attachLog: true, 
+				body: "Success",  
 				subject: "Success Pipeline: ${currentBuild.fullDisplayName}", 
 				to: 'julaa.mat@gmail.com'
 				
