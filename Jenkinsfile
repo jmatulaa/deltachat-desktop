@@ -4,7 +4,7 @@ pipeline {
 	    nodejs "node"
 	}
 	stages {
-		stage('Build') {
+		stage('Buildss') {
 			steps {
 				sh 'git pull origin master'
 				sh 'npm install'
