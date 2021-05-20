@@ -12,7 +12,7 @@ pipeline {
 				sh 'npm run build'
 				
 				}
-		post {
+			post {
 			failure{
 				emailext attachLog: true,
 				body: "Error is in ${env.BUILD_URL}",  
@@ -33,8 +33,7 @@ pipeline {
 				echo 'Testing'
 				sh 'npm test'
 			}
-		}
-		post {
+			post {
 			success {
             			echo 'Test success!'
 			}
@@ -44,11 +43,24 @@ pipeline {
         			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
         			to: 'julaa.mat@gmail.com'
     			}	
+			}
 		}
+		
 	stage('Deploy') {
 			steps {
 				echo 'Deploying'
 				sh 'docker build -t deploy -f Dockerfile-deploy .'
+			}
+		post {
+			success {
+            			echo 'Deploy success!'
+			}
+			failure {
+        			emailext attachLog: true,
+        			body: "Error is in ${env.BUILD_URL}",  
+        			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
+        			to: 'julaa.mat@gmail.com'
+    			}	
 			}
 		}
 		
