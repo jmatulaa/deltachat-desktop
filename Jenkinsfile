@@ -34,7 +34,6 @@ pipeline {
 				sh 'npm test'
 			}
 		}
-	}
 		post {
 			success {
             			echo 'Test success!'
@@ -44,7 +43,16 @@ pipeline {
         			body: "Error is in ${env.BUILD_URL}",  
         			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", 
         			to: 'julaa.mat@gmail.com'
-    		}
+    			}	
+		}
+	stage('Deploy') {
+			steps {
+				echo 'Deploying'
+				sh 'docker build -t deploy -f Dockerfile-deploy .'
+			}
+		}
+		
 	}
+		
 	
 } 
