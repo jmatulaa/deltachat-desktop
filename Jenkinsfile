@@ -6,6 +6,7 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
+				
 				sh 'git pull origin master'
 				sh 'npm install'
 				sh 'npm run build'
